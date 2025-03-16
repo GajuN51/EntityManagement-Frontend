@@ -11,13 +11,13 @@ A **React + TypeScript** web application for managing entities like Name, Surnam
 - [Axios](https://axios-http.com/) (for API calls)
 
 ##  Features
-✅ Add new records (Name, Surname, Age, Email, Phone)  
-✅ Delete existing records  
-✅ List all records in a table  
-✅ Search records dynamically  
-✅ Uses **Axios** for API communication  
-✅ **TanStack Router** for navigation  
-✅ **TailwindCSS** for modern UI  
+ Add new records (Name, Surname, Age, Email, Phone)  
+ Delete existing records  
+ List all records in a table  
+ Search records dynamically  
+ Uses **Axios** for API communication  
+ **TanStack Router** for navigation  
+ **TailwindCSS** for modern UI  
 
 ##  Getting Started
 
