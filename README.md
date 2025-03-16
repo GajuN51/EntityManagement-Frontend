@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+#  Entity Management Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **React + TypeScript** web application for managing entities like Name, Surname, Age, Email, and Phone—similar to a **phone book application**.
 
-Currently, two official plugins are available:
+ **Built with:**
+- [React.js](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) (for fast builds)
+- [TanStack Router](https://tanstack.com/router/latest) (for navigation)
+- [TanStack Table](https://tanstack.com/table/latest) (for displaying records)
+- [TailwindCSS 4.0](https://tailwindcss.com/) (for styling)
+- [Axios](https://axios-http.com/) (for API calls)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Features
+✅ Add new records (Name, Surname, Age, Email, Phone)  
+✅ Delete existing records  
+✅ List all records in a table  
+✅ Search records dynamically  
+✅ Uses **Axios** for API communication  
+✅ **TanStack Router** for navigation  
+✅ **TailwindCSS** for modern UI  
 
-## Expanding the ESLint configuration
+##  Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 1 Clone the repository & navigate to the folder
+```sh
+git clone https://github.com/GajuN51/EntityManagement-Frontend.git
+cd EntityManagement-Frontend
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### 2 Install dependencies & start server
+```sh
+npm install
+npm run dev
