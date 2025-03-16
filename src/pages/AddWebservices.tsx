@@ -68,7 +68,7 @@ const AddWebservices = () => {
                 Email
               </label>
               <input
-                type="email" // Changed to email type
+                type="email" 
                 id="email"
                 required
                 placeholder="e.g., example@gmail.com"
@@ -84,7 +84,7 @@ const AddWebservices = () => {
                 Phone
               </label>
               <input
-                type="tel" // Changed to tel for phone numbers
+                type="tel" 
                 id="phone"
                 required
                 placeholder="e.g., 123-456-7890"

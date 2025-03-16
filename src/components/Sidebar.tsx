@@ -68,7 +68,7 @@ import {
     >
       <Icon size={22} className={active ? "text-indigo-900" : "text-gray-500"} />
   
-      {/* Show Text Only If Sidebar is Open */}
+      {/* Text Only shown If Sidebar is Open */}
       <span
         className={`truncate transition-all duration-300 ${
           isSidebarOpen ? "block" : "hidden md:block"

@@ -4,5 +4,5 @@ export interface Record {
     surname: string;
     age: number;
     email: string;
-    phone: string;
+    phoneNumber: string;
   }

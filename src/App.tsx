@@ -12,12 +12,10 @@ import WebServiceOperations from "./pages/WebServiceOperations";
 import AddEnityManagement from "./pages/AddEnityManagement";
 import AddWebservices from "./pages/AddWebservices";
 
-// Define the root route
 const rootRoute = createRootRoute({
   component: Layout,
 });
 
-// Define child routes
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
@@ -43,7 +41,6 @@ const addWebservices = createRoute({
 });
 
 
-// Build the route tree
 const routeTree = rootRoute.addChildren([
   indexRoute,
   webServicesRoute,
@@ -51,7 +48,6 @@ const routeTree = rootRoute.addChildren([
   addWebservices,
 ]);
 
-// Create the router
 const router = createRouter({ routeTree });
 
 // Layout component with Sidebar and main content
@@ -68,7 +64,7 @@ function Layout() {
           isSidebarOpen ? "ml-56" : "ml-16 md:ml-64"
         }`}
       >
-        <Outlet /> {/* Renders the matched route component */}
+        <Outlet /> {/* Renders matched routes components */}
       </div>
     </div>
   );

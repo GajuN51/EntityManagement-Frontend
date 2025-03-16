@@ -17,7 +17,7 @@ const WebServiceOperations = () => {
       surname: "Doe",
       age: 30,
       email: "john@example.com",
-      phone: "123-456-7890",
+      phoneNumber: "123-456-7890",
     },
     {
       id: "2",
@@ -25,7 +25,7 @@ const WebServiceOperations = () => {
       surname: "Smith",
       age: 25,
       email: "jane@example.com",
-      phone: "098-765-4321",
+      phoneNumber: "098-765-4321",
     },
   ];
 
@@ -50,7 +50,7 @@ const WebServiceOperations = () => {
           header: () => "Email",
           cell: (info) => info.getValue(),
         }),
-        columnHelper.accessor("phone", {
+        columnHelper.accessor("phoneNumber", {
           header: () => "Phone",
           cell: (info) => info.getValue(),
         }),
@@ -72,7 +72,7 @@ const WebServiceOperations = () => {
     const filteredRecords = sampleRecords.filter(
       (record) =>
         record.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        record.phone.toLowerCase().includes(searchTerm.toLowerCase())
+        record.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase())
     );
   return (
     <div className="w-full min-h-screen m bg-gray-100 overflow-hidden">

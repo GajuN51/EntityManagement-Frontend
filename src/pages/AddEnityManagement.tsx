@@ -1,7 +1,44 @@
-import { useNavigate } from '@tanstack/react-router';
+import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import axios from "axios";
 
-const AddEnityManagement = () => {
+const AddEntityManagement = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
+    age: "",
+    email: "",
+    phoneNumber: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await axios.post("http://localhost:5043/api/entity/add", formData, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      console.log("Entity added:", response.data);
+      alert("Entity successfully added!");
+      navigate({ to: "/" }); 
+    } catch (err) {
+      console.error("Error adding entity:", err);
+      setError("Failed to add entity. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="w-full min-h-screen bg-gray-100 overflow-hidden">
@@ -10,18 +47,19 @@ const AddEnityManagement = () => {
           <h1 className="text-2xl text-center font-bold text-gray-800 mb-6">
             Create Entity Management
           </h1>
-          <form className="bg-white shadow-md rounded-lg p-6 space-y-6">
+
+          {error && <p className="text-red-600 text-center mb-4">{error}</p>}
+
+          <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6 space-y-6">
             <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                 Name
               </label>
               <input
                 type="text"
                 id="name"
-                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 placeholder="e.g., John"
@@ -29,15 +67,14 @@ const AddEnityManagement = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="surname"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+              <label htmlFor="surname" className="block text-sm font-medium text-gray-700 mb-1">
                 Surname
               </label>
               <input
                 type="text"
                 id="surname"
+                value={formData.surname}
+                onChange={handleChange}
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 placeholder="e.g., Doe"
@@ -45,15 +82,14 @@ const AddEnityManagement = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="age"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+              <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">
                 Age
               </label>
               <input
-                type="number" // Changed to number for age
+                type="number"
                 id="age"
+                value={formData.age}
+                onChange={handleChange}
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 placeholder="e.g., 30"
@@ -61,15 +97,14 @@ const AddEnityManagement = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email
               </label>
               <input
-                type="email" // Changed to email type
+                type="email"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
                 required
                 placeholder="e.g., example@gmail.com"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -77,35 +112,38 @@ const AddEnityManagement = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Phone
-              </label>
-              <input
-                type="tel" // Changed to tel for phone numbers
-                id="phone"
-                required
-                placeholder="e.g., 123-456-7890"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              />
+            <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
+  Phone Number
+</label>
+<input
+  type="tel"
+  id="phoneNumber"
+  value={formData.phoneNumber} 
+  onChange={handleChange}
+  required
+  placeholder="e.g., 123-456-7890"
+  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+/>
+
             </div>
 
             {/* Buttons */}
             <div className="flex justify-end space-x-4">
               <button
                 type="button"
-                onClick={() => navigate({ to: '/' })} // Fixed navigation
+                onClick={() => navigate({ to: "/" })}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-200"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200"
+                disabled={loading}
+                className={`px-4 py-2 rounded-md text-white transition-colors duration-200 ${
+                  loading ? "bg-gray-400 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700"
+                }`}
               >
-                Create Entity
+                {loading ? "Saving..." : "Create Entity"}
               </button>
             </div>
           </form>
@@ -115,4 +153,6 @@ const AddEnityManagement = () => {
   );
 };
 
-export default AddEnityManagement;
+export default AddEntityManagement;
+
+
